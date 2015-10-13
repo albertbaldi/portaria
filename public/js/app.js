@@ -16,14 +16,14 @@ $(document).ready(function(){
 
 	$('.defineDateTime').click(function() {
 		var txt = $("[name='" + $(this).attr('target') + "']");
-		var date = new Date(); 
+		var date = new Date();
 		var valor = getFormatedDate(date);
 		txt.val(valor);
 	});
 
 	$('#ComboCondominio').change(function(){
-		$.get("/api/dropdown/condominio_blocos", 
-			{ option: $(this).val() }, 
+		$.get("/api/dropdown/condominio_blocos",
+			{ option: $(this).val() },
 			function(data) {
 				var model = $('#ComboBloco');
 				model.empty();
@@ -32,11 +32,11 @@ $(document).ready(function(){
 					model.append("<option value='"+ element.id +"'>" + element.numero + "</option>");
 				});
 			});
-	});			
+	});
 
 	$('#ComboBloco').change(function(){
-		$.get("/api/dropdown/bloco_unidades", 
-			{ option: $(this).val() }, 
+		$.get("/api/dropdown/bloco_unidades",
+			{ option: $(this).val() },
 			function(data) {
 				var model = $('#ComboUnidade');
 				model.empty();
@@ -46,6 +46,13 @@ $(document).ready(function(){
 				});
 			});
 	});
+
+	$(".openDetails").click(function (event) {
+		event.preventDefault();
+		$("#details_" + $(this).data("id")).toggle();
+		//$(this).toggleClass('glyphicon-minus');
+	});
+
 });
 
 function getFormatedDate (date) {

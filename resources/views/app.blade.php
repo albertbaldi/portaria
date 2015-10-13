@@ -88,23 +88,27 @@
 			</div>
 		</nav>
 
-		@if (session('message_type') && session('message'))
-		<div class="alert alert-{!! session('message_type') !!}">
-			{!! session('message') !!}
-		</div>
-		@endif
+		<div class="container">
 
-		@if (count($errors) > 0)
-		<div class="alert alert-danger">
-			<ul>
-				@foreach ($errors->all() as $error)
-				<li>{!! $error !!}</li>
-				@endforeach
-			</ul>
-		</div>
-		@endif
+			@if (session('message_type') && session('message'))
+			<div class="alert alert-{!! session('message_type') !!}">
+				{!! session('message') !!}
+			</div>
+			@endif
 
-		@yield('content')
+			@if (count($errors) > 0)
+			<div class="alert alert-danger">
+				<ul>
+					@foreach ($errors->all() as $error)
+					<li>{!! $error !!}</li>
+					@endforeach
+				</ul>
+			</div>
+			@endif
+
+			@yield('content')
+			
+		</div>
 
 		<!-- Scripts -->
 		<script src="{!! asset('/js/jquery-2.1.4.min.js') !!}"></script>

@@ -2,12 +2,8 @@
 
 namespace portaria\Http\Controllers;
 
-use Request;
-
 use portaria\Http\Requests;
 use portaria\Http\Controllers\Controller;
-
-use portaria\Unidade;
 
 class UnidadeController extends Controller
 {
@@ -34,7 +30,7 @@ class UnidadeController extends Controller
         $row = new Unidade();
         $row->bloco_id = $bloco_id;
 
-        return view('unidade.form', ['row' => $row]);
+        return view('unidade.form')->with(compact('row'));
     }
 
     /**
@@ -43,18 +39,18 @@ class UnidadeController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(\Request $request)
     {
         $unidade = \portaria\Unidade::create($request::all());
 
-        return redirect()->action('UnidadeController@index', [$unidade->id]);
+        return redirect()->route('admin.unidade.index', [$row->bloco_id]);
     }
 
     public function detail($id)
     {
         $row = \portaria\Unidade::find($id);
 
-        return view('unidade.show', ['row' => $row]);
+        return view('unidade.show')->with(compact('row'));
     }
     
     /**
@@ -66,10 +62,9 @@ class UnidadeController extends Controller
     public function show()
     {
         $id = \Auth::user()->morador->unidade_id;
-//        dd($id);
         $row = \portaria\Unidade::find($id);
 
-        return view('unidade.show', ['row' => $row]);
+        return view('unidade.show')->with(compact('row'));
     }
 
     /**
@@ -82,7 +77,7 @@ class UnidadeController extends Controller
     {
         $row = \portaria\Unidade::find($id);
 
-        return view('unidade.form', ['row' => $row]);
+        return view('unidade.form')->with(compact('row'));
     }
 
     /**
@@ -92,12 +87,12 @@ class UnidadeController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(\Request $request, $id)
     {
         $row = \portaria\Unidade::find($id);
         $row->update($request::all());
 
-        return redirect()->action('UnidadeController@index', [$row->bloco_id]);
+        return redirect()->route('admin.unidade.index', [$row->bloco_id]);
     }
 
     /**
@@ -115,9 +110,9 @@ class UnidadeController extends Controller
 
     public function getFromBloco()
     {
-        $bloco_id = Request::input('option');
+        $bloco_id = \Request::input('option');
 
-        return  Unidade::where('bloco_id', $bloco_id)->get(['id','numero']);
+        return  Unidade::where('bloco_id', $bloco_id)->lists('id','numero');
     }
     
 }

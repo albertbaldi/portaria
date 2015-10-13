@@ -77,6 +77,6 @@ class Funcionario extends Model
 
 	public function condominio()
 	{
-		return $this->belongsTo('portaria\Condominio');
+		return $this->belongsTo(\portaria\Condominio::class);
 	}
 }

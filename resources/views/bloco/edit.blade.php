@@ -5,13 +5,15 @@
 <h4>Editar Bloco</h4>
 
 <p>
-	<a href="{!! route('bloco.index', [$row->condominio_id]) !!}">cancelar</a>
+	<a href="{!! route('admin.bloco.index', [$row->condominio_id]) !!}">cancelar</a>
 </p>
 
-{!! Form::model($row, ['route' => ['bloco.update', $row->id]]) !!}
+{!! Form::model($row, ['route' => ['admin.bloco.update', $row->id]]) !!}
 
-@include('bloco._form')
+@include('bloco.partial.form')
 
+{!! Form::submit('Gravar', ['class' => 'btn btn-block btn-primary']) !!}
 {!! Form::close() !!}
+
 
 @endsection

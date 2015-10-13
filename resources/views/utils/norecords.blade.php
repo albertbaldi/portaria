@@ -1,3 +1,3 @@
 <div class="alert alert-danger">
-	Não existem registros cadastrados
+	Não foram localizados registros
 </div>

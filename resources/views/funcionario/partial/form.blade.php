@@ -1,5 +1,3 @@
-<div class="panel-body">
-	
 	{!! Form::hidden('condominio_id') !!}
 	<div class="form-group">
 		{!! Form::label('nome', 'Nome') !!}
@@ -45,11 +43,9 @@
 		</div>
 	</div>
 	@endif
-</div>
-<div class="panel-footer text-right">
+
 	@if(empty($row->user_id) && $row->id > 0)
-	<a href="{!! action('UsuarioController@createUser', ['f', $row->id]) !!}"class="btn btn-default">gerar usuário</a> |
+	<p>
+		<a href="{!! route('create_user', ['f', $row->id]) !!}"class="btn btn-default">gerar usuário</a>
+	</p>
 	@endif
-	<a href="{!! route('funcionario.index', [$row->condominio_id]) !!}" class="btn btn-default">cancelar</a>
-	{!! Form::submit('gravar', ['class' => 'btn btn-primary']) !!}
-</div>

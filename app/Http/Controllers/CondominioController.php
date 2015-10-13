@@ -2,12 +2,8 @@
 
 namespace portaria\Http\Controllers;
 
-use Request;
-
 use portaria\Http\Requests;
 use portaria\Http\Controllers\Controller;
-
-use portaria\Condominio;
 
 class CondominioController extends Controller
 {
@@ -39,22 +35,11 @@ class CondominioController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(\Request $request)
     {
         \portaria\Condominio::create($request::all());
 
-        return redirect('/');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.condominio.index');
     }
 
     /**
@@ -77,12 +62,12 @@ class CondominioController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(\Request $request, $id)
     {
         $row = \portaria\Condominio::find($id);
         $row->update($request::all());
 
-        return redirect()->action('CondominioController@index');
+        return redirect()->route('admin.condominio.index');
     }
 
     /**

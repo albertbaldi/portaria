@@ -2,13 +2,8 @@
 
 namespace portaria\Http\Controllers;
 
-use Request;
-
 use portaria\Http\Requests;
 use portaria\Http\Controllers\Controller;
-
-use portaria\Condominio;
-use portaria\Bloco;
 
 class BlocoController extends Controller
 {
@@ -32,7 +27,7 @@ class BlocoController extends Controller
      */
     public function create($condominio_id)
     {
-        $row = new Bloco();
+        $row = new \portaria\Bloco();
         $row->condominio_id = $condominio_id;
 
         return view('bloco.create')->with(compact('row'));
@@ -44,22 +39,11 @@ class BlocoController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(\Request $request)
     {
-        $bloco = \portaria\Bloco::create($request::all());
+        $row = \portaria\Bloco::create($request::all());
 
-        return redirect()->action('BlocoController@index', [$bloco->condominio_id]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.bloco.index', [$row->condominio_id]);
     }
 
     /**
@@ -82,12 +66,12 @@ class BlocoController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(\Request $request, $id)
     {
         $row = \portaria\Bloco::find($id);
         $row->update($request::all());
 
-        return redirect()->action('BlocoController@index', [$row->condominio_id]);
+        return redirect()->route('admin.bloco.index', [$row->condominio_id]);
     }
 
     /**
@@ -110,9 +94,9 @@ class BlocoController extends Controller
      */
     public function getFromCondominio()
     {
-        $condominio_id = Request::input('option');
+        $condominio_id = \Request::input('option');
 
-        return  Bloco::where('condominio_id', $condominio_id)->get(['id','numero']);
+        return  Bloco::where('condominio_id', $condominio_id)->lists('id','numero');
     }
 
 }

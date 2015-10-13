@@ -5,13 +5,14 @@
 <h4>Novo Condomínio</h4>
 
 <p>
-	<a href="{!! route('condominio.index') !!}">cancelar</a>
+	<a href="{!! route('admin.condominio.index') !!}">cancelar</a>
 </p>
 
-{!! Form::open(['route' => 'condominio.store']) !!}
+{!! Form::open(['route' => 'admin.condominio.store']) !!}
 
-@include('condominio._form')
+@include('condominio.partial.form')
 
+{!! Form::submit('Gravar', ['class' => 'btn btn-block btn-primary']) !!}
 {!! Form::close() !!}
 
 @endsection

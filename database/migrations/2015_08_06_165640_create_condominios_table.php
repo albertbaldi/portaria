@@ -15,6 +15,9 @@ class CreateCondominiosTable extends Migration
         Schema::create('condominios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->string('cnpj', 20);
+            $table->string('telefone', 15);
+            $table->string('endereco');
             $table->timestamps();
         });
     }

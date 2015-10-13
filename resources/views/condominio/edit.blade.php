@@ -5,13 +5,15 @@
 <h4>Editar Condomínio</h4>
 
 <p>
-	<a href="{!! route('condominio.index') !!}">cancelar</a>
+	<a href="{!! route('admin.condominio.index') !!}">cancelar</a>
 </p>
 
-{!! Form::model($row, ['route' => ['condominio.update', $row->id]]) !!}
+{!! Form::model($row, ['route' => ['admin.condominio.update', $row->id]]) !!}
 
-@include('condominio._form')
+@include('condominio.partial.form')
 
+{!! Form::submit('Gravar', ['class' => 'btn btn-block btn-primary']) !!}
 {!! Form::close() !!}
+
 
 @endsection

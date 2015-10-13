@@ -2,21 +2,20 @@
 
 @section('content')
 
-
 <p>
-	<a href="{!! route('funcionario.index', [$row->condominio_id]) !!}">cancelar</a>
+	<a href="{!! route('admin.funcionario.index', [$row->condominio_id]) !!}">cancelar</a>
 </p>
-<div class="panel panel-default">
-	<div class="panel-heading text-center">
-		<h4>
-			Novo Funcionário
-		</h4>
-	</div>
+<h4>
+	<small>{!! $row->condominio->nome !!}</small>
+	<br>
+	Novo Funcionário
+</h4>
 
-	{!! Form::model($row, ['route' => 'funcionario.store']) !!}
+{!! Form::model($row, ['route' => 'admin.funcionario.store']) !!}
 
-	@include('funcionario._form')
+@include('funcionario.partial.form')
 
-	{!! Form::close() !!}
-</div>
+{!! Form::submit('Gravar', ['class' => 'btn btn-block btn-primary']) !!}
+{!! Form::close() !!}
+
 @endsection

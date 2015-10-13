@@ -11,16 +11,16 @@ class Unidade extends Model
 
 	public function bloco()
 	{
-		return $this->belongsTo('portaria\Bloco');
+		return $this->belongsTo(\portaria\Bloco::class);
 	}
 
 	public function moradores()
 	{
-		return $this->hasMany('portaria\Morador');
+		return $this->hasMany(\portaria\Morador::class);
 	}
 
 	public function visitas()
 	{
-		return $this->hasMany('portaria\Visita');
+		return $this->hasMany(\portaria\Visita::class);
 	}
 }

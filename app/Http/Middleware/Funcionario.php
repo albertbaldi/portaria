@@ -26,7 +26,6 @@ class Funcionario
                 'title' => 'Erro - Acesso Funcionário',
                 'message' => 'Usuário sem acesso ao recurso: '.$request->url(),
                 'detail' => 'Tipo usuário: '.$tipoUsuario.' Nível de acesso: Funcionário'
-
                 ];
                 return view('utils.genericError', $data);
             }
