@@ -2,13 +2,17 @@
 
 @section('content')
 
-<h4>Editar Unidade</h4>
+<h4>
+	<small>{{$row->bloco->condominio->nome}} - {{$row->bloco->numero}}</small>
+	<br>
+	Editar Unidade
+</h4>
 
 <p>
-	<a href="{{ route('admin.condominio.index', [$row->bloco_id])}}">cancelar</a>
+	<a href="{{ route('admin.unidade.index', [$row->bloco_id])}}">cancelar</a>
 </p>
 
-{!! Form::model($row, ['route' => 'admin.condominio.update', $row->id]) !!}
+{!! Form::model($row, ['route' => ['admin.unidade.update', $row->id]]) !!}
 
 @include('unidade.partial.form')
 

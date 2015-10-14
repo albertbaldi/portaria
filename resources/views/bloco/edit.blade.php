@@ -2,7 +2,11 @@
 
 @section('content')
 
-<h4>Editar Bloco</h4>
+<h4>
+	<small>{!! $row->condominio->nome !!}</small>
+	<br>
+	Editar Bloco
+</h4>
 
 <p>
 	<a href="{!! route('admin.bloco.index', [$row->condominio_id]) !!}">cancelar</a>

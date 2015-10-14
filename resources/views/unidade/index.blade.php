@@ -33,7 +33,12 @@
 			<tr id="details_{!! $row->id !!}" style="display: none;">
 				<td colspan="2">
 					@foreach ($row->moradores as $morador)
-					{!! $morador->nome !!} <br>
+					@if($morador->responsavel)
+						<strong>{!! $morador->nome !!}</strong>
+					@else	
+						{!! $morador->nome !!}
+					@endif
+					<br>
 					@endforeach
 				</td>
 			</tr>

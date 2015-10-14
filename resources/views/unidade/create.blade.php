@@ -2,13 +2,17 @@
 
 @section('content')
 
-<h4>Nova Unidade</h4>
+<h4>
+	<small>{{$row->bloco->condominio->nome}} - {{$row->bloco->numero}}</small>
+	<br>
+	Nova Unidade
+</h4>
 
 <p>
-	<a href="{{ route('admin.condominio.index', [$row->bloco_id])}}">cancelar</a>
+	<a href="{{ route('admin.unidade.index', [$row->bloco_id])}}">cancelar</a>
 </p>
 
-{!! Form::open(['route' => 'admin.condominio.store']) !!}
+{!! Form::open(['route' => 'admin.unidade.store']) !!}
 
 @include('unidade.partial.form')
 

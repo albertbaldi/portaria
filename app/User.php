@@ -68,11 +68,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function funcionario()
     {
-        return $this->hasOne('portaria\Funcionario');
+        return $this->hasOne(\portaria\Funcionario::class);
     }
 
     public function morador()
     {
-        return $this->hasOne('portaria\Morador');
+        return $this->hasOne(\portaria\Morador::class);
     }
 }

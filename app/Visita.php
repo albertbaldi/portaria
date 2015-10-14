@@ -9,10 +9,6 @@ class Visita extends Model
 	protected $fillable = ['unidade_id', 'data_entrada', 'data_saida', 'placa'];
 	protected $guarded = ['id'];
 
-	public function unidade()
-	{
-		return $this->belongsTo('portaria\Unidade');
-	}
 
 	public function setDataEntradaAttribute($value)
 	{
@@ -49,4 +45,8 @@ class Visita extends Model
 		return \DateTime::createFromFormat("Y-m-d H:i:s", $date)->format("d/m/Y H:i:s");
 	}
 
+	public function unidade()
+	{
+		return $this->belongsTo(\portaria\Unidade::class);
+	}
 }

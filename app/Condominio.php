@@ -12,11 +12,11 @@ class Condominio extends Model
 
 	public function blocos()
 	{
-		return $this->hasMany('portaria\Bloco');
+		return $this->hasMany(\portaria\Bloco::class);
 	}
 
 	public function funcionarios()
 	{
-		return $this->hasMany('portaria\Funcionario');
+		return $this->hasMany(\portaria\Funcionario::class);
 	}
 }

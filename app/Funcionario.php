@@ -72,7 +72,7 @@ class Funcionario extends Model
 
 	public function user()
 	{
-		return $this->hasOne('portaria\User', 'id', 'user_id');
+		return $this->hasOne(\portaria\User::class, 'id', 'user_id');
 	}
 
 	public function condominio()

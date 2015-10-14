@@ -11,11 +11,11 @@ class Bloco extends Model
 
 	public function condominio()
 	{
-		return $this->belongsTo('portaria\Condominio');
+		return $this->belongsTo(\portaria\Condominio::class);
 	}
 
 	public function unidades()
 	{
-		return $this->hasMany('portaria\Unidade');
+		return $this->hasMany(\portaria\Unidade::class);
 	}
 }
