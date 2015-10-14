@@ -2,12 +2,8 @@
 
 namespace portaria\Http\Controllers;
 
-use Request;
-
 use portaria\Http\Requests;
 use portaria\Http\Controllers\Controller;
-
-use portaria\Visita;
 
 class VisitaController extends Controller
 {
@@ -67,11 +63,7 @@ class VisitaController extends Controller
      */
     public function create()
     {
-        $condominio = \Auth::user()->funcionario->condominio;
-        $blocos = \portaria\Bloco::where('condominio_id', $condominio->id)->get();
-
-        $row = new Visita();
-        return view('visita.form')->with(compact('blocos', 'row'));
+        return view('visita.create');
     }
 
     /**
@@ -80,11 +72,11 @@ class VisitaController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(\Request $request)
     {
         $visita = \portaria\Visita::create($request::all());
 
-        return $this->getReturn();
+        return redirect()->route('visita.index');
     }
 
     /**
@@ -108,7 +100,7 @@ class VisitaController extends Controller
     {
         $row = \portaria\Visita::find($id);
 
-        return view('visita.form')->with(compact('row'));
+        return view('visita.edit')->with(compact('row'));
     }
 
     /**
@@ -118,12 +110,12 @@ class VisitaController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(\Request $request, $id)
     {
         $row = \portaria\Visita::find($id);
         $row->update($request::all());
 
-        return $this->getReturn();
+        return redirect()->route('visita.index');
     }
 
     /**
@@ -149,16 +141,4 @@ class VisitaController extends Controller
         return back()->with('message', $msg);
     }
 
-    protected function getReturn()
-    {
-        $tipoUsuario = \Auth::user()->tipoUsuario;
-        switch ($tipoUsuario) {
-            case 'M':
-            return redirect()->route('morador_visitas');
-            break;
-            case 'F':
-            return redirect()->action('VisitaController@index');
-            break;
-        }     
-    }
 }

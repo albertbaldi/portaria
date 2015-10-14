@@ -112,7 +112,7 @@ class UnidadeController extends Controller
     {
         $bloco_id = \Request::input('option');
 
-        return  Unidade::where('bloco_id', $bloco_id)->lists('id','numero');
+        return  \portaria\Unidade::where('bloco_id', $bloco_id)->lists('numero','id');
     }
     
 }

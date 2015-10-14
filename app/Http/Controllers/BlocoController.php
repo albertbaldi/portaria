@@ -96,7 +96,7 @@ class BlocoController extends Controller
     {
         $condominio_id = \Request::input('option');
 
-        return  Bloco::where('condominio_id', $condominio_id)->lists('id','numero');
+        return  \portaria\Bloco::where('condominio_id', $condominio_id)->lists('id','numero');
     }
 
 }

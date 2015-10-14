@@ -30,15 +30,15 @@ class HomeController extends Controller
 		switch ($tipoUsuario) {
 
 			case 'A': //ADMINISTRADOR
-			return redirect()->action('CondominioController@index');
+			return redirect()->route('admin.condominio.index');
 			break;
 
 			case 'F': //FUNCIONÁRIO
-			return redirect()->action('VisitaController@index');
+			return redirect()->route('visita.index');
 			break;
 
 			case 'M': //MORADOR
-			return redirect()->action('UnidadeController@show');
+			return redirect()->route('morador.morador.show');
 			break;
 			
 			default:

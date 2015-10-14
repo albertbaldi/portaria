@@ -35,10 +35,10 @@
 					<ul class="nav navbar-nav">
 						@if(Auth::check())
 						@if(Auth::user()->tipoUsuario == 'A')
-						<li><a href="{!! action('CondominioController@index') !!}">Condomínios</a></li>
+						<li><a href="{!! route('admin.condominio.index') !!}">Condomínios</a></li>
 						@elseif(Auth::user()->tipoUsuario == 'F')
-						<li><a href="{!! action('MoradorController@index') !!}">Moradores</a></li>
-						<li><a href="{!! action('VisitaController@index') !!}">Visitas</a></li>
+						<li><a href="{!! route('morador.morador.show') !!}">Moradores</a></li>
+						<li><a href="{!! route('visita.index') !!}">Visitas</a></li>
 
 						@if(Auth::user()->funcionario->sindico)
 						<li><a href="{!! route('funcionarios') !!}">Funcionários</a></li>
@@ -99,7 +99,7 @@
 			@if (count($errors) > 0)
 			<div class="alert alert-danger">
 				@foreach ($errors->all() as $error)
-					<p>{!! $error !!}</p>
+				<p>{!! $error !!}</p>
 				@endforeach
 			</div>
 			@endif

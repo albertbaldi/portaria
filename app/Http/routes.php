@@ -79,19 +79,21 @@ Route::group(['middleware' => 'auth'], function () {
 		
 		Route::get('funcionario', ['as' => 'funcionario', 'uses' => 'funcionarioController@getByLoggedUser']);
 
-		Route::group(['as' => 'morador.'], function () {
+		Route::group(['as' => 'morador.', 'prefix' => 'morador'], function () {
 			Route::get('novo', ['as' => 'create', 'uses' => 'MoradorController@create']);
-			Route::put('incluir', ['as' => 'store','uses' => 'MoradorController@store']);
-			Route::put('excluir/{id}', ['as' => 'destroy', 'uses' => 'MoradorController@destroy']);
+			Route::post('incluir', ['as' => 'store','uses' => 'MoradorController@store']);
+			Route::get('editar/{id}', ['as' => 'edit', 'uses' => 'MoradorController@edit']);
+			Route::post('atualizar/{id}', ['as' => 'update','uses' => 'MoradorController@update']);
+			Route::get('excluir/{id}', ['as' => 'destroy', 'uses' => 'MoradorController@destroy']);
 		});
 
 	});
 
-	Route::group(['middleware' => 'funcionario', 'prefix' => 'funcionario', 'as' => 'funcionario.'], function () {
+	Route::group(['middleware' => 'funcionario', 'as' => 'funcionario.'], function () {
 		
 		Route::group(['prefix' => 'visita', 'as' => 'visita.'], function () {
 			Route::get('novo', ['as' => 'create', 'uses' => 'VisitaController@create']);
-			Route::put('incluir', ['as' => 'store', 'uses' => 'VisitaController@store']);
+			Route::post('incluir', ['as' => 'store', 'uses' => 'VisitaController@store']);
 			Route::get('editar/{id}', ['as' => 'edit', 'uses' => 'VisitaController@edit']);
 			Route::post('atualizar/{id}', ['as' => 'update', 'uses' => 'VisitaController@update']);
 			Route::get('finalizar/{id}', ['as' => 'checkout', 'uses' => 'VisitaController@checkout']);
@@ -103,22 +105,19 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::group(['as' => 'morador.'], function (){
 			Route::get('show', ['as' => 'show', 'uses' => 'UnidadeController@show']);
 			Route::get('visitas', ['as' => 'visita', 'uses' => 'VisitaController@index']);
+
 			Route::get('moradores', ['as' => 'morador', 'uses' => 'MoradorController@index']);
-		});
-	});
-
-	Route::group(['middleware' => ['admin','employee']], function (){
-		Route::group(['prefix' => 'morador', 'as' => 'morador.'], function (){
 			Route::get('novo', ['as' => 'create', 'uses' => 'MoradorController@create']);
-			Route::put('incluir', ['as' => 'store', 'uses' => 'MoradorController@store']);
+			Route::post('incluir', ['as' => 'store','uses' => 'MoradorController@store']);
 			Route::get('editar/{id}', ['as' => 'edit', 'uses' => 'MoradorController@edit']);
-			Route::post('atualizar/{id}', ['as' => 'update', 'uses' => 'MoradorController@update']);
-		});
+			Route::post('atualizar/{id}', ['as' => 'update','uses' => 'MoradorController@update']);
+			Route::get('excluir/{id}', ['as' => 'destroy', 'uses' => 'MoradorController@destroy']);
 
-		Route::get('visita', ['as' => 'visita','uses' => 'VisitaController@index']);
-		Route::get('criarUsuario/{type}/{id}', ['as' => 'create_user','uses' => 'UsuarioController@createUser']);
+		});
 	});
 
-
+	Route::get('visita', ['as' => 'visita.index','uses' => 'VisitaController@index']);
+	
+	Route::get('criarUsuario/{type}/{id}', ['as' => 'create_user','uses' => 'UsuarioController@createUser']);
 });
 

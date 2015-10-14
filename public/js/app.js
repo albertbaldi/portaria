@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$('.telefone').mask('(00)0000-0000');
 	$('.phone_us').mask('(000) 000-0000');
 	$('.mixed').mask('AAA-000-S0S');
-	$('.placa').mask('AAA-0000');
+	$('.placa').mask('SSS-0000');
 	$('.number3').mask('000');
 	$('.cnpj').mask('00.000.000/0000-00');
 	$('.cpf').mask('000.000.000-00', {reverse: true});
@@ -29,7 +29,7 @@ $(document).ready(function(){
 				model.empty();
 
 				$.each(data, function(index, element) {
-					model.append("<option value='"+ element.id +"'>" + element.numero + "</option>");
+					model.append("<option value='"+ index +"'>" + element + "</option>");
 				});
 			});
 	});
@@ -42,7 +42,7 @@ $(document).ready(function(){
 				model.empty();
 
 				$.each(data, function(index, element) {
-					model.append("<option value='"+ element.id +"'>" + element.numero + "</option>");
+					model.append("<option value='"+ index +"'>" + element + "</option>");
 				});
 			});
 	});
